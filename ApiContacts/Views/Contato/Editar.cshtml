@@ -1,6 +1,4 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model Contato 
 @{
     ViewData["Title"] = "Editar Contato";
 }
@@ -9,22 +7,23 @@
     <h1 class="display-4">Editar Contato</h1>
 </div>
 
-<form>
+<form asp-controller="Contato" asp-action="Alterar" method="post">
+    <input type="hidden" asp-for="Id" />
     <div class="form-group">
         <label for="nome">Nome</label>
-        <input type="text" class="form-control" placeholder="Digite o nome do contato">
+        <input type="text" asp-for="Nome" class="form-control" placeholder="Digite o nome do contato">
     </div>
     <div class="form-group">
         <label for="nome">Email</label>
-        <input type="text" class="form-control" placeholder="Digite o seu email do contato">
+        <input type="text" asp-for="Email" class="form-control" placeholder="Digite o seu email do contato">
     </div>
     <div class="form-group">
         <label for="nome">Celular</label>
-        <input type="text" class="form-control" placeholder="Digite o seu celular do contato">
+        <input type="text" asp-for="Celular" class="form-control" placeholder="Digite o seu celular do contato">
     </div>
 
     <div class="mt-3">
-        <button type="submit" class="btn btn-block btn-primary">Alterar</button>
+        <button type="submit" class="btn btn-block btn-primary" asp-action="Alterar">Alterar</button>
         <a class="btn btn-block btn-secondary" asp-controller="Contato" asp-action="Index" role="button">Voltar</a>
     </div>
 </form>

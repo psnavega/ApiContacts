@@ -1,7 +1,18 @@
-﻿var builder = WebApplication.CreateBuilder(args);
+﻿using System;
+using ApiContacts.Domains.Repositories;
+using ApiContacts.Infra;
+using ApiContacts.Repositories;
+using Microsoft.EntityFrameworkCore;
+
+var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+var connectionString = builder.Configuration.GetConnectionString("DatabaseString");
+builder.Services.AddScoped<IContatoRepository, ContatoRepository>();
+builder.Services.AddDbContext<DatabaseContext>(options =>
+    options.UseSqlServer(connectionString));
+
 
 var app = builder.Build();
 
