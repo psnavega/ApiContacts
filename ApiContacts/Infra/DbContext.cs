@@ -14,6 +14,7 @@ namespace ApiContacts.Infra
 		}
 
         public DbSet<Contato> Contatos { get; set; }
+        public DbSet<Usuario> Usuarios { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

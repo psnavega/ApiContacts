@@ -44,6 +44,7 @@ namespace ApiContacts.Controllers
             return View(contato);
         }
 
+        [HttpPost]
         public IActionResult Apagar(Guid id)
         {
             try

@@ -1,25 +1,46 @@
-﻿using System.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using ApiContacts.Infra;
 using ApiContacts.Models;
+using Microsoft.AspNetCore.Mvc;
 
-namespace ApiContacts.Controllers;
-
-public class HomeController : Controller
+namespace ApiContacts.Controllers
 {
-    public IActionResult Index()
+    public class HomeController : Controller
     {
-        return View();
-    }
+        public IActionResult Index()
+        {
+            return View();
+        }
 
-    public IActionResult Privacy()
-    {
-        return View();
-    }
+        public IActionResult BuscaPorId(Guid Id)
+        {
+            return View();
+        }
 
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        public IActionResult ApagarConfirmacao(Guid Id)
+        {
+            return View();
+        }
+
+        public IActionResult Criar()
+        {
+            return View();
+        }
+
+        public IActionResult Deletar()
+        {
+            return View();
+        }
+
+        public IActionResult Atualizar(Usuario usuario)
+        {
+            return View();
+        }
     }
 }
+
+
 
