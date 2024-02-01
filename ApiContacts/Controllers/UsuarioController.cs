@@ -29,33 +29,37 @@ namespace ApiContacts.Controllers
 
         public IActionResult ApagarConfirmacao(Guid id)
         {
-			Usuario usuario = _usuarioRepository.BuscarPorId(id);
-
-			if (usuario == null)
+			try
 			{
-                TempData["MensagemErro"] = "Falha ao apagar usuário";
-				return RedirectToAction("Index");
-            }
-			else {
+				Usuario usuario = _usuarioRepository.BuscarPorId(id) ?? throw new Exception("Usuário não encontrado");
                 return View(usuario);
+			}
+			catch (Exception error)
+			{
+                TempData["MensagemErro"] = $"Falha ao apagar usuário: {error.Message}";
+                return RedirectToAction("Index");
             }
         }
 
 		[HttpPost]
         public IActionResult Apagar(Guid id)
         {
-			bool response = _usuarioRepository.Deletar(id);
-
-			if (response)
+			try
 			{
+				bool response = _usuarioRepository.Deletar(id);
+
+				if (!response)
+				{
+						throw new Exception("Usuario não encontrado");
+				}
 				TempData["MensagemSucesso"] = "Usuário apagado com sucesso";
-			}
-			else
-			{
-                TempData["MensagemErro"] = "Falha ao apagar usuário";
+				return RedirectToAction("Index");
             }
-
-			return RedirectToAction("Index");
+			catch (Exception error)
+			{
+                TempData["MensagemErro"] = $"Falha ao apagar usuário: {error.Message}";
+                return RedirectToAction("Index");
+            }
         }
 
         [HttpPost]
