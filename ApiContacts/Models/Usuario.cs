@@ -7,6 +7,10 @@ namespace ApiContacts.Models
     public class Usuario
     {
         public Guid Id { get; set; }
+        [Required(ErrorMessage = "Digite uma senha válida")]
+        public PerfilEnum Perfil { get; set; }
+        public DateTime CriadoEm { get; set; }
+        public DateTime? AtualizadoEm { get; set; }
         [Required(ErrorMessage = "Digite o email do contato")]
         [EmailAddress(ErrorMessage = "O email informado não é válido!")]
         public string Email { get; set; }
@@ -14,12 +18,9 @@ namespace ApiContacts.Models
         public string Login { get; set; }
         [Required(ErrorMessage = "Digite o nome do contato")]
         public string Nome { get; set; }
-        [Required(ErrorMessage = "Digite o nome do contato")]
-        public string Senha { get; set; }
         [Required(ErrorMessage = "Digite uma senha válida")]
-        public PerfilEnum Perfil;
-        public DateTime criadoEm;
-        public DateTime? atualizadoEm;
+        public string Senha { get; set; }
+        
 
         public Usuario(string nome, string email, string login, string senha, PerfilEnum perfil)
         {
@@ -29,6 +30,7 @@ namespace ApiContacts.Models
             Login = login;
             Senha = senha;
             Perfil = perfil;
+            CriadoEm = DateTime.Now;
         }
 
         public Usuario()

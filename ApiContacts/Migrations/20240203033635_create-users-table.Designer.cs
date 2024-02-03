@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ApiContacts.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20240131004325_create-users-table")]
+    [Migration("20240203033635_create-users-table")]
     partial class createuserstable
     {
         /// <inheritdoc />

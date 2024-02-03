@@ -6,14 +6,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ApiContacts.Repositories
 {
-	public class UsuarioRepository : IUsuarioRepository
-	{
-		private readonly DatabaseContext _databaseContext;
+    public class UsuarioRepository : IUsuarioRepository
+    {
+        private readonly DatabaseContext _databaseContext;
 
-		public UsuarioRepository(DatabaseContext databaseContext)
-		{
-			_databaseContext = databaseContext;
-		}
+        public UsuarioRepository(DatabaseContext databaseContext)
+        {
+            _databaseContext = databaseContext;
+        }
 
         public List<Usuario> BuscaTodos()
         {
@@ -26,7 +26,7 @@ namespace ApiContacts.Repositories
 
             if (usuario == null)
             {
-                throw new Exception("Usuário não encontrado");  
+                throw new Exception("Usuário não encontrado");
             }
 
             return usuario;
@@ -34,6 +34,7 @@ namespace ApiContacts.Repositories
 
         public Usuario Criar(Usuario usuario)
         {
+            usuario.CriadoEm = DateTime.Now;
             _databaseContext.Usuarios.Add(usuario);
             _databaseContext.SaveChanges();
             return usuario;
@@ -52,6 +53,27 @@ namespace ApiContacts.Repositories
                 _databaseContext.Usuarios.Remove(usuario);
                 _databaseContext.SaveChanges();
                 return true;
+            }
+        }
+
+        public Usuario Editar(Usuario usuario)
+        {
+            Usuario usuarioNoBanco = _databaseContext.Usuarios.FirstOrDefault(x => x.Id == usuario.Id);
+
+            if (usuario == null)
+            {
+                throw new Exception("Usuário não encontrado na base");
+            }
+            else
+            {
+                usuarioNoBanco.Nome = usuario.Nome;
+                usuarioNoBanco.Login = usuario.Login;
+                usuarioNoBanco.Senha = usuario.Senha;
+                usuarioNoBanco.Email = usuario.Email;
+                usuarioNoBanco.Perfil = usuario.Perfil;
+                usuarioNoBanco.AtualizadoEm = DateTime.Now;
+                _databaseContext.SaveChanges();
+                return usuarioNoBanco;
             }
         }
     }

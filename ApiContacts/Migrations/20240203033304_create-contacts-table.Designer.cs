@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ApiContacts.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20240121150720_create-contact-table")]
-    partial class createcontacttable
+    [Migration("20240203033304_create-contacts-table")]
+    partial class createcontactstable
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
