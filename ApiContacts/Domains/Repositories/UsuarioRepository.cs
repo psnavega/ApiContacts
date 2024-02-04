@@ -14,6 +14,8 @@ namespace ApiContacts.Domains.Repositories
 		Boolean Deletar(Guid id);
 
 		Usuario Editar(Usuario usuario);
+
+		Boolean Autenticar(string login, string senha);
     }
 }
 

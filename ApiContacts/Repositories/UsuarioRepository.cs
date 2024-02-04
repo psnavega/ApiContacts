@@ -68,13 +68,21 @@ namespace ApiContacts.Repositories
             {
                 usuarioNoBanco.Nome = usuario.Nome;
                 usuarioNoBanco.Login = usuario.Login;
-                usuarioNoBanco.Senha = usuario.Senha;
                 usuarioNoBanco.Email = usuario.Email;
                 usuarioNoBanco.Perfil = usuario.Perfil;
                 usuarioNoBanco.AtualizadoEm = DateTime.Now;
                 _databaseContext.SaveChanges();
                 return usuarioNoBanco;
             }
+        }
+
+        public bool Autenticar(string login, string senha)
+        {
+            Usuario usuario = _databaseContext.Usuarios.FirstOrDefault(x => x.Login.ToUpper() == login.ToUpper());
+
+            if (usuario == null) return false;
+
+            return usuario.SenhaValida(senha);
         }
     }
 }

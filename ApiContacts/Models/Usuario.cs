@@ -33,6 +33,11 @@ namespace ApiContacts.Models
             CriadoEm = DateTime.Now;
         }
 
+        public bool SenhaValida(string senha)
+        {
+            return Senha == senha;
+        }
+
         public Usuario()
         {
 

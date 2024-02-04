@@ -17,6 +17,7 @@
     <None Remove="Domains\Enums\" />
     <None Remove="Views\Usuario\" />
     <None Remove="Migrations\" />
+    <None Remove="Views\Login\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Contato\" />
@@ -27,6 +28,7 @@
     <Folder Include="Domains\Enums\" />
     <Folder Include="Views\Usuario\" />
     <Folder Include="Migrations\" />
+    <Folder Include="Views\Login\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.15" />
