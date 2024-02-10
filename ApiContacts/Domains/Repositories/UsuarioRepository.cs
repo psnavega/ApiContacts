@@ -15,7 +15,7 @@ namespace ApiContacts.Domains.Repositories
 
 		Usuario Editar(Usuario usuario);
 
-		Boolean Autenticar(string login, string senha);
+		Usuario Autenticar(string login, string senha);
     }
 }
 

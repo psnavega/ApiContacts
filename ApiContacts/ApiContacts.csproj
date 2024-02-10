@@ -18,6 +18,12 @@
     <None Remove="Views\Usuario\" />
     <None Remove="Migrations\" />
     <None Remove="Views\Login\" />
+    <None Remove="Helper\" />
+    <None Remove="Views\Shared\Components\" />
+    <None Remove="Views\Shared\Components\Menu\" />
+    <None Remove="ViewComponents\" />
+    <None Remove="Filters\" />
+    <None Remove="Views\Restrito\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Contato\" />
@@ -29,6 +35,12 @@
     <Folder Include="Views\Usuario\" />
     <Folder Include="Migrations\" />
     <Folder Include="Views\Login\" />
+    <Folder Include="Helper\" />
+    <Folder Include="Views\Shared\Components\" />
+    <Folder Include="Views\Shared\Components\Menu\" />
+    <Folder Include="ViewComponents\" />
+    <Folder Include="Filters\" />
+    <Folder Include="Views\Restrito\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.15" />
@@ -42,9 +54,13 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Migrations\20240203033304_create-contacts-table.cs" />
     <Compile Remove="Migrations\20240203033304_create-contacts-table.Designer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="ViewComponents\Menu.cshtml" />
   </ItemGroup>
 </Project>

@@ -76,13 +76,15 @@ namespace ApiContacts.Repositories
             }
         }
 
-        public bool Autenticar(string login, string senha)
+        public Usuario Autenticar(string login, string senha)
         {
             Usuario usuario = _databaseContext.Usuarios.FirstOrDefault(x => x.Login.ToUpper() == login.ToUpper());
 
-            if (usuario == null) return false;
+            bool senhaEhValida = usuario.SenhaValida(senha);
 
-            return usuario.SenhaValida(senha);
+            if (senhaEhValida) return usuario;
+
+            return null;
         }
     }
 }

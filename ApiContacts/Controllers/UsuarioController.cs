@@ -1,5 +1,6 @@
 ﻿using System;
 using ApiContacts.Domains.Repositories;
+using ApiContacts.Filters;
 using ApiContacts.Infra;
 using ApiContacts.Models;
 using ApiContacts.Repositories;
@@ -8,6 +9,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace ApiContacts.Controllers
 {
+    [PaginaParaAdmin]
     public class UsuarioController : Controller
     {
         private readonly IUsuarioRepository _usuarioRepository;

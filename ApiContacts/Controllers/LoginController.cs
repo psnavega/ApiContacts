@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ApiContacts.Domains.Repositories;
+using ApiContacts.Helper;
 using ApiContacts.Models;
 using Microsoft.AspNetCore.Mvc;
 using static System.Runtime.InteropServices.JavaScript.JSType;
@@ -14,16 +15,28 @@ namespace ApiContacts.Controllers
     public class LoginController : Controller
     {
         private readonly IUsuarioRepository _usuarioRepository;
+        private readonly ISessao _sessao;
 
-        public LoginController(IUsuarioRepository usuarioRepository)
+        public LoginController(IUsuarioRepository usuarioRepository, ISessao sessao)
         {
             _usuarioRepository = usuarioRepository;
+            _sessao = sessao;
         }
 
         // GET: /<controller>/
         public IActionResult Index()
         {
+            // se usuário estiver logado, redirect para a home
+
+            if (_sessao.BuscaSessaoUsuario() != null) return RedirectToAction("Index", "Home");
+
             return View();
+        }
+
+        public IActionResult Sair()
+        {
+            _sessao.RemoveSessaoUsuario();
+            return RedirectToAction("Index", "Login");
         }
 
         [HttpPost]
@@ -33,16 +46,14 @@ namespace ApiContacts.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    bool result = _usuarioRepository.Autenticar(login.Username, login.Senha);
+                    Usuario usuario = _usuarioRepository.Autenticar(login.Username, login.Senha);
 
-                    if (result)
+                    if (usuario != null)
                     {
+                        _sessao.CriarSessaoUsuario(usuario);
                         return RedirectToAction("Index", "Home");
                     }
-                    else
-                    {
-                        TempData["MensagemErro"] = $"Usuário ou senha inválidos, por favor tente novamente";
-                    }
+                    TempData["MensagemErro"] = $"Usuário ou senha inválidos, por favor tente novamente";
                 }
                 return View("Index");
             }

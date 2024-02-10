@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ApiContacts.Filters;
 using ApiContacts.Infra;
 using ApiContacts.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ApiContacts.Controllers
 {
+    [PaginaParaUsuarioLogado]
     public class HomeController : Controller
     {
         public IActionResult Index()
