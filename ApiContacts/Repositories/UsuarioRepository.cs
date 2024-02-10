@@ -86,6 +86,26 @@ namespace ApiContacts.Repositories
 
             return null;
         }
+
+        public Usuario BuscarPorEmailELogin(string email, string login)
+        {
+            Usuario usuario = _databaseContext.Usuarios.FirstOrDefault(x => x.Email.ToUpper() == email.ToUpper() && x.Login.ToUpper() == login.ToUpper());
+
+            return usuario;
+        }
+
+        public bool AtualizarSenha(Usuario usuario)
+        {
+            Usuario usuarioNoBanco = _databaseContext.Usuarios.FirstOrDefault(x => x.Id == usuario.Id);
+
+            if (usuarioNoBanco is null) return false;
+
+            usuarioNoBanco.Senha = usuario.Senha;
+
+            _databaseContext.SaveChanges();
+
+            return true;
+        }
     }
 }
 

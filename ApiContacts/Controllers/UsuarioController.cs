@@ -105,6 +105,7 @@ namespace ApiContacts.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    usuario.SetSenhaHash();
                     Usuario usuarioCriado = _usuarioRepository.Criar(usuario);
                     TempData["MensagemSucesso"] = "Usuário cadastrado com sucesso!";
                     return RedirectToAction("Index");

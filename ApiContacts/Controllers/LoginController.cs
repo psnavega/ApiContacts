@@ -39,6 +39,39 @@ namespace ApiContacts.Controllers
             return RedirectToAction("Index", "Login");
         }
 
+        public IActionResult RedefinirSenha()
+        {
+            return View();
+        }
+
+        public IActionResult EnviarLinkParaRedefinirSenha(RedefinirSenha redefinirSenha)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    Usuario usuario = _usuarioRepository.BuscarPorEmailELogin(redefinirSenha.Email, redefinirSenha.Username);
+
+                    if (usuario != null)
+                    {
+                        usuario.GerarNovaSenha();
+
+                        _usuarioRepository.AtualizarSenha(usuario);
+
+                        TempData["MensagemSucesso"] = $"Enviamos para seu email cadastrado uma nova senha, favor verificar";
+                        return RedirectToAction("Index","Login");
+                    }
+                    TempData["MensagemErro"] = $"Não foi possível redefinir sua senha, por favor verifique os dados enviados";
+                }
+                return View("Index");
+            }
+            catch (Exception error)
+            {
+                TempData["MensagemErro"] = $"Ops, não foi possível redefinir sua senha, tente novamente mais tarde: {error.Message}";
+                return View("Index");
+            }
+        }
+
         [HttpPost]
         public IActionResult Login(Login login)
         {

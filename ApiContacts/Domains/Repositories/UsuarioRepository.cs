@@ -11,11 +11,15 @@ namespace ApiContacts.Domains.Repositories
 
 		Usuario BuscarPorId(Guid id);
 
-		Boolean Deletar(Guid id);
+        Usuario BuscarPorEmailELogin(string email, string login);
+
+        Boolean Deletar(Guid id);
 
 		Usuario Editar(Usuario usuario);
 
 		Usuario Autenticar(string login, string senha);
+
+		Boolean AtualizarSenha(Usuario usuario);
     }
 }
 

@@ -42,6 +42,11 @@ namespace ApiContacts.Infra
         {
             Database.EnsureCreated();
         }
+
+        internal Usuario Find(Func<object, bool> value)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 
