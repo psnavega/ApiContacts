@@ -44,6 +44,11 @@ namespace ApiContacts.Models
             Senha = Senha.GerarHash();
         }
 
+        public void SetNovaSenha(string novaSenha)
+        {
+            Senha = novaSenha.GerarHash();
+        }
+
         public string GerarNovaSenha()
         {
             var novaSenha = Guid.NewGuid().ToString().Substring(0, 8);

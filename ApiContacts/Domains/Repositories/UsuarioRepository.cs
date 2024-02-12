@@ -20,6 +20,9 @@ namespace ApiContacts.Domains.Repositories
 		Usuario Autenticar(string login, string senha);
 
 		Boolean AtualizarSenha(Usuario usuario);
+
+		Usuario AtualizarNovaSenha(AlterarSenha alterarSenha);
+
     }
 }
 

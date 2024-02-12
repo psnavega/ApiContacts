@@ -94,6 +94,21 @@ namespace ApiContacts.Repositories
             return usuario;
         }
 
+        public Usuario AtualizarNovaSenha(AlterarSenha alterarSenha)
+        {
+            Usuario usuarioDb = BuscarPorId(alterarSenha.Id) ?? throw new Exception("Houve um erro ao tentar localizar o usuário, falha ao atualizar senha");
+
+            if (!usuarioDb.SenhaValida(alterarSenha.SenhaAtual)) throw new Exception("A senha não é valida");
+
+            if (usuarioDb.SenhaValida(alterarSenha.NovaSenha)) throw new Exception("A nova senha deve ser diferente da atual");
+
+            usuarioDb.SetNovaSenha(alterarSenha.NovaSenha);
+            usuarioDb.AtualizadoEm = DateTime.Now;
+            _databaseContext.SaveChanges();
+
+            return usuarioDb;
+        }
+
         public bool AtualizarSenha(Usuario usuario)
         {
             Usuario usuarioNoBanco = _databaseContext.Usuarios.FirstOrDefault(x => x.Id == usuario.Id);
