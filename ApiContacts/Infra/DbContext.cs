@@ -1,4 +1,5 @@
 ﻿using System;
+using ApiContacts.Infra.Map;
 using ApiContacts.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -35,6 +36,7 @@ namespace ApiContacts.Infra
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.ApplyConfiguration(new ContatoMap());
             base.OnModelCreating(modelBuilder);
         }
 

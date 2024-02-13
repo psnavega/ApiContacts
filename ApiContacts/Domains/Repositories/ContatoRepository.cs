@@ -7,7 +7,7 @@ namespace ApiContacts.Domains.Repositories
 	{
 		Contato Adicionar(Contato contato);
 
-		List<Contato> BuscarTodos();
+		List<Contato> BuscarTodos(Guid usuarioId);
 
 		Contato BuscaPorId(Guid id);
 

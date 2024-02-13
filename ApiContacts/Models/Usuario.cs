@@ -34,6 +34,8 @@ namespace ApiContacts.Models
             CriadoEm = DateTime.Now;
         }
 
+        public virtual List<Contato> Contatos { get; set; }
+
         public bool SenhaValida(string senha)
         {
             return Senha == senha.GerarHash();

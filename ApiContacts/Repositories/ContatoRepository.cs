@@ -63,12 +63,10 @@ namespace ApiContacts.Repositories
             return _databaseContext.Contatos.FirstOrDefault(x => x.Id == id);
         }
 
-        public List<Contato> BuscarTodos()
+        public List<Contato> BuscarTodos(Guid usuarioId)
         {
-            return _databaseContext.Contatos.ToList();
+            return _databaseContext.Contatos.Where(x => x.UsuarioId == usuarioId).ToList();
         }
-
-        
     }
 }
 

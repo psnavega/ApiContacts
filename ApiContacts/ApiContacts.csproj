@@ -25,6 +25,7 @@
     <None Remove="Filters\" />
     <None Remove="Views\Restrito\" />
     <None Remove="Views\AlterarSenha\" />
+    <None Remove="Infra\Map\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Contato\" />
@@ -43,6 +44,7 @@
     <Folder Include="Filters\" />
     <Folder Include="Views\Restrito\" />
     <Folder Include="Views\AlterarSenha\" />
+    <Folder Include="Infra\Map\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.15" />
@@ -57,6 +59,7 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Microsoft.VisualStudio.Language.Intellisense" Version="17.8.222" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Migrations\20240203033304_create-contacts-table.cs" />

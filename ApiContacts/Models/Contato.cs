@@ -24,6 +24,10 @@ namespace ApiContacts.Models
             Email = email;
             Celular = celular;
         }
+
+        public Usuario Usuario { get; set; }
+
+        public Guid? UsuarioId { get; set; }
     }
 }
 

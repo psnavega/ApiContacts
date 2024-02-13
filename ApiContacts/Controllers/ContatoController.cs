@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ApiContacts.Domains.Repositories;
 using ApiContacts.Filters;
+using ApiContacts.Helper;
 using ApiContacts.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,16 +16,19 @@ namespace ApiContacts.Controllers
     public class ContatoController : Controller
     {
         private readonly IContatoRepository _contatoRepository;
+        private readonly ISessao _sessao;
 
-        public ContatoController(IContatoRepository contatoRepository)
+        public ContatoController(IContatoRepository contatoRepository, ISessao sessao)
         {
             _contatoRepository = contatoRepository;
+            _sessao = sessao;
         }
 
         // GET: /<controller>/
         public IActionResult Index()
         {
-            List<Contato> contatos = _contatoRepository.BuscarTodos();
+            Usuario usuario = _sessao.BuscaSessaoUsuario();
+            List<Contato> contatos = _contatoRepository.BuscarTodos(usuario.Id);
             return View(contatos);
         }
 
@@ -76,6 +80,8 @@ namespace ApiContacts.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    Usuario usuario = _sessao.BuscaSessaoUsuario();
+                    contato.UsuarioId = usuario.Id;
                     _contatoRepository.Adicionar(contato);
                     TempData["MensagemSucesso"] = "Contato cadastrado com sucesso";
                     return RedirectToAction("Index");
@@ -95,6 +101,8 @@ namespace ApiContacts.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    Usuario usuario = _sessao.BuscaSessaoUsuario();
+                    contato.UsuarioId = usuario.Id;
                     _contatoRepository.Atualizar(contato);
                     TempData["MensagemSucesso"] = "Contato atualizado com sucesso";
                     return RedirectToAction("Index");
