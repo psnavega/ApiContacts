@@ -17,7 +17,9 @@ namespace ApiContacts.Repositories
 
         public List<Usuario> BuscaTodos()
         {
-            return _databaseContext.Usuarios.ToList();
+            return _databaseContext.Usuarios
+                .Include(x => x.Contatos)
+                .ToList();
         }
 
         public Usuario BuscarPorId(Guid id)

@@ -1,0 +1,41 @@
+﻿@model List<Contato>
+@{
+    ViewData["Title"] = "Listagem de contatos";
+}
+
+<div class="w-100">
+    <table class="table" id="tabela-contatos-usuarios">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Email</th>
+                <th scope="col">Celular</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                @foreach (var contato in Model)
+                {
+                    <tr>
+                        <th scope="row">@contato.Id</th>
+                        <td>@contato.Nome</td>
+                        <td>@contato.Email</td>
+                        <td>@contato.Celular</td>
+                    </tr>
+                }
+            }
+            else
+            {
+        <tr>
+            <td>Nenhum contato encontrado</td>
+            <td>Nenhum contato encontrado</td>
+            <td>Nenhum contato encontrado</td>
+            <td>Nenhum contato encontrado</td>
+        </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
